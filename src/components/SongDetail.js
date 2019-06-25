@@ -2,13 +2,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 //As soon as you wire up the mapStateToProps method in this file and call it with the connect method, you will find the "song" parameter in the props of SongDetail
-const SongDetail = (props) => {
-    console.log(props);
-    return (
-        <div>
-            SongDetail
-        </div>
-    );
+//Here instead of referring to the entire props object, we can destructure and refer to only the prop that we need, which is song
+const SongDetail = ({ song }) => {
+    if (!song) {
+        return <div>Please Select a song</div>;
+    } else {
+        return (
+            <div>
+                <h3>Details for : </h3>
+                <p>
+                    Title : {song.title} <br/>
+                    Duration : {song.duration }
+                </p>
+            </div>
+        );
+    }
 };
 
 const mapStateToProps = (state) => {
